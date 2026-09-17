@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import {
   ArrowDown,
   ArrowUp,
@@ -21,7 +20,10 @@ import {
 import { fr, type Dictionary } from "@/locales/fr";
 import { ary } from "@/locales/ary";
 import { site } from "@/data/site";
-import { categories, gallery, menu, type Category } from "@/data/menu";
+import { categories, menu, type Category } from "@/data/menu";
+import { mediaFor, mediaById } from "@/data/media";
+import { officialPosts } from "@/data/social";
+import { ApprovedImage, MediaCredit } from "./approved-image";
 import { Brand, LanguageSwitcher, OrderLink } from "./ui";
 
 const ids = [
@@ -40,6 +42,10 @@ export default function FoodSpot() {
   const [legal, setLegal] = useState<"legal" | "privacy" | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const t: Dictionary = language === "fr" ? fr : ary;
+  const gallery = mediaFor("gallery");
+  const hero = mediaFor("hero")[0];
+  const logo = mediaFor("logo")[0];
+  const social = mediaFor("social")[0];
   const changeLanguage = (next: "fr" | "ary") => {
     setLanguage(next);
     document.documentElement.lang = next === "fr" ? "fr" : "ar-MA";
@@ -86,7 +92,7 @@ export default function FoodSpot() {
       <header className="header">
         <div className="container header-inner">
           <a href="#accueil" aria-label={site.name}>
-            <Brand />
+            <Brand language={language} />
           </a>
           <nav className="desktop-nav" aria-label={t.nav[0]}>
             {ids.map((id, i) => (
@@ -178,31 +184,40 @@ export default function FoodSpot() {
               {t.scroll}
             </a>
           </div>
-          <div className="hero-art">
-            <div className="orbit" />
-            <span className="art-word" aria-hidden="true">
-              BON
-              <br />
-              APPÉTIT.
-            </span>
-            <Image
-              src="/images/burgers.svg"
-              alt={t.illustration}
-              width={800}
-              height={720}
-              loading="eager"
-              fetchPriority="high"
-              className="hero-burger"
-            />
-            <span className="sticker">
-              <Sparkles size={25} />
-              {t.sticker}
-              <span>THE FOOD SPOT</span>
-            </span>
-            <span className="city-tag" dir="ltr">
-              BRUXELLES <ArrowUpRight size={17} /> TANGER
-            </span>
-            <small className="image-note">{t.illustration}</small>
+          <div
+            className={`hero-media ${hero ? "has-media" : "awaiting-media"}`}
+          >
+            {hero ? (
+              <>
+                <ApprovedImage asset={hero} language={language} priority />
+                <MediaCredit asset={hero} label={t.mediaSource} />
+              </>
+            ) : (
+              <>
+                {logo && (
+                  <div className="hero-logo">
+                    <ApprovedImage asset={logo} language={language} priority />
+                  </div>
+                )}
+                <span className="eyebrow">THE FOOD SPOT / TANGER</span>
+                <h2>{t.realSpot}</h2>
+                <p>{t.mediaWaiting}</p>
+                <a
+                  className="text-link"
+                  href={site.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Instagram size={19} />
+                  {t.instagram}
+                  <ArrowUpRight size={17} />
+                </a>
+                <div className="hero-address">
+                  <MapPin size={18} />
+                  <bdi>{site.address}</bdi>
+                </div>
+              </>
+            )}
           </div>
         </section>
         <div className="info-bar">
@@ -287,17 +302,20 @@ export default function FoodSpot() {
                 .filter(
                   (item) => category === "all" || item.category === category,
                 )
-                .map((item, i) => (
+                .map((item) => (
                   <article className="product-card" key={item.id}>
-                    <div className={`product-image tone-${i % 3}`}>
-                      <Image
-                        src={item.image}
-                        alt={`${item.name?.[language] ?? t.categories[item.category]}${item.placeholder ? ` — ${t.illustration}` : ""}`}
-                        width={600}
-                        height={480}
-                      />
-                      {item.placeholder && <span>{t.product}</span>}
-                    </div>
+                    {mediaById(item.mediaId, "menu") && (
+                      <div className="product-approved">
+                        <ApprovedImage
+                          asset={mediaById(item.mediaId, "menu")!}
+                          language={language}
+                        />
+                        <MediaCredit
+                          asset={mediaById(item.mediaId, "menu")!}
+                          label={t.mediaSource}
+                        />
+                      </div>
+                    )}
                     <div className="product-body">
                       <h3>
                         {item.name?.[language] ?? t.categories[item.category]}
@@ -338,28 +356,59 @@ export default function FoodSpot() {
               <ArrowUpRight size={18} />
             </a>
           </div>
-          <div className="gallery">
-            {gallery.map((item, i) => (
-              <button
-                className={`gallery-item gallery-${i}`}
-                key={item.key}
-                onClick={() => setActiveImage(i)}
-                aria-label={`${t.zoom} : ${t.galleryNames[item.key]}`}
+          {gallery.length > 0 ? (
+            <div className="gallery">
+              {gallery.map((item, i) => (
+                <figure className="gallery-approved" key={item.id}>
+                  <button
+                    className="gallery-item"
+                    onClick={() => setActiveImage(i)}
+                    aria-label={`${t.zoom} : ${item.alt[language]}`}
+                  >
+                    <ApprovedImage asset={item} language={language} />
+                    <span className="gallery-plus">
+                      <Plus size={18} />
+                    </span>
+                    <span className="gallery-caption">
+                      {item.alt[language]}
+                    </span>
+                  </button>
+                  <figcaption>
+                    <MediaCredit asset={item} label={t.mediaSource} />
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          ) : (
+            <div className="gallery-empty">
+              <Instagram size={32} />
+              <div>
+                <h3>{t.galleryWaiting}</h3>
+                <p>{t.mediaWaiting}</p>
+              </div>
+              <a
+                className="button"
+                href={site.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <Image
-                  src={item.image}
-                  alt={`${t.galleryNames[item.key]} — ${t.photo}`}
-                  fill
-                  sizes="(max-width: 600px) 50vw, 25vw"
-                />
-                <span className="gallery-plus">
-                  <Plus size={18} />
-                </span>
-                <span className="gallery-caption">
-                  {t.galleryNames[item.key]}
-                  <small>{t.photo}</small>
-                </span>
-              </button>
+                {t.moreInstagram}
+                <ArrowUpRight size={18} />
+              </a>
+            </div>
+          )}
+          <div className="official-posts">
+            {officialPosts.map((post) => (
+              <a
+                href={post.url}
+                key={post.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>{post.type[language]}</span>
+                <strong>{post.label[language]}</strong>
+                <ArrowUpRight size={20} />
+              </a>
             ))}
           </div>
         </section>
@@ -432,7 +481,7 @@ export default function FoodSpot() {
             <div className="map-road road-three" />
             <div className="map-pin">
               <MapPin size={32} />
-              <Brand />
+              <Brand language={language} />
             </div>
             <div className="map-card">
               <strong>THE FOOD SPOT TANGER</strong>
@@ -469,14 +518,28 @@ export default function FoodSpot() {
                 <ArrowUpRight size={20} />
               </a>
             </div>
-            <div className="social-art" aria-hidden="true">
-              <Instagram />
-              <span>
-                GOOD FOOD.
-                <br />
-                GOOD MOOD.
-              </span>
-              <span className="social-star">✳</span>
+            <div className="social-reference">
+              {social ? (
+                <>
+                  <ApprovedImage asset={social} language={language} />
+                  <MediaCredit asset={social} label={t.mediaSource} />
+                </>
+              ) : (
+                <>
+                  <Instagram size={42} />
+                  <strong dir="ltr">@thefoodspottanger</strong>
+                  <p>{t.socialReference}</p>
+                  <a
+                    className="text-link"
+                    href={site.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {t.follow}
+                    <ArrowUpRight size={18} />
+                  </a>
+                </>
+              )}
             </div>
           </div>
         </section>
@@ -485,7 +548,7 @@ export default function FoodSpot() {
         <div className="container footer-top">
           <div>
             <a href="#accueil" aria-label={site.name}>
-              <Brand />
+              <Brand language={language} />
             </a>
             <p>{t.footerText}</p>
           </div>
@@ -536,10 +599,9 @@ export default function FoodSpot() {
         }}
         onKeyDown={(e) => {
           if (e.key === "Tab") {
-            const controls =
-              e.currentTarget.querySelectorAll<HTMLButtonElement>(
-                "button:not(:disabled)",
-              );
+            const controls = e.currentTarget.querySelectorAll<HTMLElement>(
+              'button:not(:disabled), a[href], [tabindex="0"]',
+            );
             const first = controls[0];
             const last = controls[controls.length - 1];
             if (e.shiftKey && document.activeElement === first) {
@@ -564,12 +626,8 @@ export default function FoodSpot() {
         </button>
         {activeImage !== null && (
           <>
-            <Image
-              src={gallery[activeImage].image}
-              alt={`${t.galleryNames[gallery[activeImage].key]} — ${t.photo}`}
-              width={900}
-              height={720}
-            />
+            <ApprovedImage asset={gallery[activeImage]} language={language} />
+            <MediaCredit asset={gallery[activeImage]} label={t.mediaSource} />
             <div className="lightbox-controls">
               <button
                 className="icon-button"
@@ -579,9 +637,9 @@ export default function FoodSpot() {
                 <ChevronLeft />
               </button>
               <p>
-                {t.galleryNames[gallery[activeImage].key]}
+                {gallery[activeImage].alt[language]}
                 <small>
-                  {t.photo} · {activeImage + 1} / {gallery.length}
+                  {activeImage + 1} / {gallery.length}
                 </small>
               </p>
               <button

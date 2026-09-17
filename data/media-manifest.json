@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "assets": [
+    {
+      "id": "official-logo",
+      "filename": "official-logo.jpg",
+      "sha256": "6249db23bf9fa113be3fb3d4b821da99d89d443f4cdd949a4205abc7488b4f9c",
+      "sourceUrl": "https://www.instagram.com/thefoodspottanger/",
+      "postUrl": "https://www.instagram.com/thefoodspottanger/",
+      "platform": "instagram",
+      "approvalStatus": "approved",
+      "approvedOn": "2026-09-17",
+      "approvalReference": "Project owner explicitly authorized business-owned logo and photos in this task on 2026-09-17.",
+      "permissionNote": "Official profile logo covered by explicit owner authorization. Visible public 150px preview exported via supported browser page-assets capability; no gated post or protection bypassed. Preserve original bytes, full circular mark and all lettering.",
+      "businessAssociation": "Visually verified as the profile logo of the owner-specified The Food Spot Tanger account; same emblem observed on the Brussels account.",
+      "rightsHolder": "The Food Spot (business-owned logo, per owner authorization)",
+      "attributionRequired": true,
+      "attributionText": "The Food Spot Tanger",
+      "attributionNote": "Conservative business credit displayed; no separate creator credit visible in the logo. Owner should supply the original brand file for production.",
+      "peopleClearance": "Illustrated burger emblem; no identifiable people.",
+      "intendedComponents": ["logo"],
+      "alt": {
+        "fr": "Logo officiel The Food Spot : emblème rond noir, orange et blanc avec un burger.",
+        "ary": "اللوغو الرسمي ديال The Food Spot: برݣر وسط دائرة بالكحل والبرتقالي والبيض."
+      },
+      "mayCrop": false,
+      "mayEdit": false,
+      "originalAssetFilename": "758395856_18073365722466152_1954954646858359145_n.jpg",
+      "retrievalMethod": "Single selected visible profile image exported by browser pageAssets; canonical source page retained instead of expiring session-associated CDN query.",
+      "metadataReview": {
+        "sha256": "ff6cbdb39383c5f4beca9e0d52e3027553f58d3c1feafb5b83e9c131b9f34d5f",
+        "note": "Inspected Photoshop APP13 payload: only IPTC dataset 2:40 Facebook FBMD processing marker. No EXIF/XMP, GPS, names, captions or creator credit. Original bytes retained."
+      },
+      "width": 150,
+      "height": 150,
+      "localFilename": "public/images/approved/official-logo.jpg",
+      "url": "/images/approved/official-logo.jpg",
+      "importedAt": "2026-09-17T21:08:56.151Z"
+    }
+  ],
+  "generated": [
+    {
+      "id": "temporary-favicon",
+      "localFilename": "app/icon.svg",
+      "url": "/icon.svg",
+      "width": 64,
+      "height": 64,
+      "status": "project-generated",
+      "permissionNote": "Original project-created temporary icon; not an official business logo.",
+      "intendedComponent": "favicon"
+    },
+    {
+      "id": "temporary-open-graph",
+      "localFilename": "app/opengraph-image.tsx",
+      "url": "/opengraph-image",
+      "width": 1200,
+      "height": 630,
+      "status": "project-generated",
+      "permissionNote": "Original project-created text-only sharing card; not external photography.",
+      "intendedComponent": "metadata"
+    }
+  ]
+}

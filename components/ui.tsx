@@ -2,13 +2,21 @@
 import { ArrowUpRight, MessageCircle } from "lucide-react";
 import { site } from "@/data/site";
 import type { Dictionary } from "@/locales/fr";
-export function Brand() {
+import { mediaFor } from "@/data/media";
+import { ApprovedImage } from "./approved-image";
+export function Brand({ language }: { language: "fr" | "ary" }) {
+  const logo = mediaFor("logo")[0];
+  if (logo)
+    return (
+      <span className="official-brand">
+        <ApprovedImage asset={logo} language={language} />
+        {logo.attributionRequired && <small>{logo.attributionText}</small>}
+      </span>
+    );
   return (
     <span className="brand" dir="ltr">
       <span>THE FOOD</span>
-      <span>
-        SPOT<span className="brand-dot">®</span>
-      </span>
+      <span>SPOT</span>
       <small>TANGER</small>
     </span>
   );

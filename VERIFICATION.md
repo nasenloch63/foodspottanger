@@ -1,25 +1,21 @@
-# Verification — 17 September 2026
+# Verification — brand update, 17 September 2026
 
-Verified locally using Node.js 24 and Microsoft Edge through Playwright.
+This report supersedes the initial demo-gallery report. Verified on Node.js 24 with the in-app browser against localhost:3000.
 
-- Next.js production compilation and static page generation: passed.
-- TypeScript strict checking: passed.
-- ESLint: passed without warnings after configuration cleanup.
-- French and Darija at 360, 768, 1024 and 1440 CSS pixels: document width matches viewport; no horizontal page scrolling.
-- All local images decoded successfully at every tested size.
-- French is the initial language; both selectors update content, document language and direction without reloading.
-- Menu category filtering and reset: passed.
-- Eight-image gallery: opening, next image and Escape dismissal passed.
-- Legal placeholder dialog: opening and Escape dismissal passed.
-- Keyboard Tab cycling stays inside the gallery dialog and Escape returns focus to its opener. An explicit focus loop handles Edge's native dialog focus behavior.
-- Mobile menu: opening, anchor navigation and closing passed.
-- All internal anchor targets exist.
-- WhatsApp links contain the supplied phone number and encoded message; telephone, Instagram and Maps targets match the supplied details.
-- No browser JavaScript errors observed.
-- Desktop and mobile screenshots reviewed in both languages.
+- TypeScript strict validation: passed.
+- ESLint: passed.
+- Production build: passed; seven static pages generated. Build includes approved-media validation.
+- Six importer regression tests: passed (dry run, unchanged bytes/provenance, idempotence, incomplete/unapproved input, batch failure/no overwrite, tampered/unregistered images, empty media, hash-bound embedded metadata review).
+- Empty external-media configuration: importer tests and the earlier production build before logo import passed. The final site has one approved image asset.
+- French and Darija at 360, 390, 768, 1024 and 1440px: no horizontal overflow; no broken images. Arabic sets ar-MA and rtl without reload. Logo alt text switches in all placements.
+- All four rendered images reference official-logo in the approval manifest and decode correctly. Same brand mark is reused in header, hero, location and footer; no food photo is repeated or implied.
+- Desktop and mobile screenshots reviewed: original circular logo remains uncropped, header order/language controls visible, hero, menu and gallery fallback readable. Source logo is limited to 150px resolution.
+- Menu filter: one burger card, then reset to five categories. Unconfirmed menu/price labels remain.
+- Mobile navigation opens, follows anchor and closes.
+- Legal dialog opens; Escape dismisses and restores opener focus. Focus loop includes attribution links for future gallery media.
+- Approved gallery currently empty: useful Instagram state and three official post links shown. Authentic photo cropping/lightbox QA remains pending real gallery originals; no claim of a tested populated production gallery.
+- WhatsApp, phone, Instagram and Maps href values checked against supplied details. No message/order sent; WhatsApp account availability is not confirmed by this test.
+- Browser warning/error log: empty during final checks.
+- Search of app/components/data/locales: no stock-photo URLs or retired demo-image paths. Media check validates published paths, hashes, approvals and generated assets.
 
-The first layout check identified overflow from the rotated hero illustration. Clipping its decorative container resolved it at all eight language/viewport combinations. The initial cold development request exceeded a browser navigation timeout; the server returned HTTP 200 and subsequent checks passed. No production build warning remains after adding a metadata base fallback.
-
-External links were inspected, not used to send a message or place an order. Restaurant ownership, menu details, WhatsApp account availability, photographs and linguistic/legal accuracy require owner validation. This is a commercial demo with explicit placeholders, not a live ordering platform.
-
-Screenshots and local browser scripts are stored in ignored `test-results/`; no machine-specific browser paths are required to build the project.
+Real photo originals, confirmed menu, high-resolution logo, native Moroccan copy review, operator/legal details and final domain remain launch inputs. Google listing/photo inspection was blocked by a challenge; gated Instagram posts were not accessed. Public profiles and previews supported the documented brand analysis. See BRAND_MEDIA_AUDIT.md and MEDIA_APPROVAL.md.

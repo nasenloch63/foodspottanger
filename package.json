@@ -5,25 +5,29 @@
   "packageManager": "pnpm@11.19.0",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/import-approved-media.mjs --check && next build",
+    "media:check": "node scripts/import-approved-media.mjs --check",
+    "media:import": "node scripts/import-approved-media.mjs",
+    "test:media": "node --test scripts/media-import.test.mjs",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "lucide-react": "^0.562.0",
     "next": "^16.0.10",
     "react": "^19.2.3",
-    "react-dom": "^19.2.3",
-    "lucide-react": "^0.562.0"
+    "react-dom": "^19.2.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.18",
-    "tailwindcss": "^4.1.18",
-    "typescript": "^5.9.3",
     "@types/node": "^22.19.0",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "eslint": "^9.39.2",
-    "eslint-config-next": "^16.0.10"
+    "eslint-config-next": "^16.0.10",
+    "sharp": "^0.35.4",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.9.3"
   }
 }

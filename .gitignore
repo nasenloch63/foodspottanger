@@ -5,3 +5,5 @@ out/
 !.env.example
 *.tsbuildinfo
 test-results/
+incoming-media/
+data/media-manifest.json.*.tmp

@@ -11,6 +11,13 @@ export const fr = {
   orderNow: "Commander maintenant",
   instagram: "Voir notre Instagram",
   language: "Choisir la langue",
+  mediaSource: "Voir la source",
+  realSpot: "Retrouvez le spot.\nEn vrai.",
+  mediaWaiting:
+    "Les photos du restaurant seront présentées ici dès leur sélection. En attendant, retrouvez-nous sur notre compte Instagram.",
+  galleryWaiting: "Les images du spot, sur Instagram.",
+  socialReference:
+    "Photos, vidéos et actualités : rendez-vous directement sur notre profil.",
   openMenu: "Ouvrir le menu",
   close: "Fermer",
   skip: "Aller au contenu",
@@ -56,8 +63,7 @@ export const fr = {
   askMenu: "Demander la carte",
   galleryLabel: "03 / LA VIE AU SPOT",
   galleryTitle: "Du goût. De la vie. Du partage.",
-  galleryText:
-    "Un aperçu à imaginer. Les vraies photos arrivent ici prochainement.",
+  galleryText: "Le restaurant, les plats et les moments à partager.",
   photo: "Photo à ajouter",
   galleryNames: {
     burger: "Nos burgers",

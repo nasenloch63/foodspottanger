@@ -6,8 +6,8 @@ export default function OpenGraphImage() {
   return new ImageResponse(
     <div
       style={{
-        background: "#151614",
-        color: "#f6f3e9",
+        background: "#080808",
+        color: "#ffffff",
         width: "100%",
         height: "100%",
         padding: "70px",
@@ -29,7 +29,7 @@ export default function OpenGraphImage() {
         }}
       >
         <span>Le goût qui</span>
-        <span style={{ color: "#ffd340" }}>rassemble.</span>
+        <span style={{ color: "#ff7000" }}>rassemble.</span>
       </div>
       <div style={{ fontSize: 25 }}>
         BRUXELLES → TANGER · 100% HALAL · 12:00 – 05:00

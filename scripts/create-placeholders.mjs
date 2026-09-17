@@ -1,7 +1,7 @@
 // Original vector illustrations, not photographs of the restaurant or its menu.
 // Run `node scripts/create-placeholders.mjs` to regenerate editable demo assets.
 import { mkdirSync, writeFileSync } from "node:fs";
-mkdirSync("public/images", { recursive: true });
+mkdirSync("archive/demo-illustrations", { recursive: true });
 const defs = `<defs><linearGradient id="bun" x2="0" y2="1"><stop stop-color="#ffcc75"/><stop offset=".55" stop-color="#dc8737"/><stop offset="1" stop-color="#a84f20"/></linearGradient><linearGradient id="meat" x2="0" y2="1"><stop stop-color="#713523"/><stop offset="1" stop-color="#321b16"/></linearGradient><linearGradient id="cheese" x2="0" y2="1"><stop stop-color="#ffe26a"/><stop offset="1" stop-color="#f7a819"/></linearGradient><filter id="shadow"><feDropShadow dx="0" dy="13" stdDeviation="11" flood-opacity=".2"/></filter></defs>`;
 const burger = `<g filter="url(#shadow)"><path d="M135 471Q148 563 396 561Q644 565 663 476Z" fill="url(#bun)" stroke="#a94d23" stroke-width="5"/><path d="M137 463Q174 438 218 451L296 441L386 457L480 442L563 457L659 451L657 483Q592 505 528 486Q470 511 407 485Q340 513 275 487Q205 506 142 483Z" fill="#603526"/><path d="M132 427Q177 406 230 421Q273 393 329 414Q374 390 423 414Q474 394 522 411Q593 397 669 426L662 462Q601 480 538 465Q483 480 421 465Q368 482 310 464Q242 478 190 464L137 469Z" fill="url(#meat)"/><path d="M134 419L216 397L324 399L431 395L542 400L663 410L599 435L535 440L501 474L456 435L343 429L268 458L224 435L151 439Z" fill="url(#cheese)"/><path d="M139 383Q206 349 272 371Q336 348 400 368Q470 349 531 366Q600 352 664 386L660 411Q592 425 536 411Q469 426 413 409Q350 426 288 411Q215 430 140 404Z" fill="url(#meat)"/><path d="M134 353Q172 325 203 348Q231 321 260 346Q292 316 325 341Q361 323 396 346Q431 317 467 341Q504 323 539 345Q576 324 610 346Q643 325 670 354L657 381L624 368L592 389L555 370L522 387L483 368L449 385L412 366L374 387L339 367L304 384L263 365L225 388L191 368L153 383Z" fill="#84a33c" stroke="#355b28" stroke-width="5"/><path d="M154 335Q278 292 399 317Q522 292 648 337L629 351Q519 332 404 351Q290 334 170 350Z" fill="#d94b2e"/><path d="M148 308C151 178 245 121 390 116C542 107 642 187 652 301Q649 327 590 334L218 337Q151 332 148 308Z" fill="url(#bun)" stroke="#a96027" stroke-width="4"/><path d="M166 279Q235 162 379 149Q515 132 600 246" fill="none" stroke="#ffdd96" stroke-width="9" opacity=".28" stroke-linecap="round"/>${Array.from(
   { length: 32 },
@@ -30,6 +30,6 @@ const assets = {
 };
 for (const [name, art] of Object.entries(assets))
   writeFileSync(
-    `public/images/${name}.svg`,
+    `archive/demo-illustrations/${name}.svg`,
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 720" role="img"><title>Illustration de démonstration — ${name}</title>${defs}${art}</svg>`,
   );

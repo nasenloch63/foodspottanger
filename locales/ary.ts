@@ -6,6 +6,12 @@ export const ary: Dictionary = {
   orderNow: "كوموندي دابا",
   instagram: "شوفونا فأنستغرام",
   language: "اختار اللغة",
+  mediaSource: "شوف المصدر",
+  realSpot: "لقانا\nعلى الطبيعة.",
+  mediaWaiting:
+    "صور المطعم غادي تكون هنا من بعد الاختيار. حتى لذاك الوقت، شوفونا فأنستغرام.",
+  galleryWaiting: "صور المطعم فأنستغرام.",
+  socialReference: "الصور والفيديوهات والجديد تلقاوه مباشرة فالبروفايل ديالنا.",
   openMenu: "حل المينيو",
   close: "سد",
   skip: "دوز للمحتوى",
@@ -50,7 +56,7 @@ export const ary: Dictionary = {
   askMenu: "طلب المينيو",
   galleryLabel: "03 / الأجواء عندنا",
   galleryTitle: "البنة واللمة والأجواء.",
-  galleryText: "هاد الرسومات مؤقتة. الصور الحقيقية غادي تجي قريب.",
+  galleryText: "المطعم والماكلة واللحظات اللي كتجمعنا.",
   photo: "الصورة غادي تزيد",
   galleryNames: {
     burger: "البرݣرات ديالنا",

@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "id": "hero-burger",
+      "sourceFile": "incoming-media/hero-burger.jpg",
+      "filename": "hero-burger.jpg",
+      "sha256": "REPLACE_WITH_SHA256_OF_THE_APPROVED_ORIGINAL",
+      "sourceUrl": "REPLACE_WITH_EXACT_SOURCE_URL_OR_OWNER_SUPPLIED_REFERENCE",
+      "postUrl": null,
+      "platform": "owner-supplied",
+      "approvalStatus": "pending",
+      "approvedOn": "",
+      "approvalReference": "",
+      "permissionNote": "",
+      "businessAssociation": "",
+      "rightsHolder": "",
+      "attributionRequired": false,
+      "attributionText": "",
+      "attributionNote": "",
+      "peopleClearance": "",
+      "intendedComponents": ["hero"],
+      "alt": { "fr": "", "ary": "" },
+      "mayCrop": false,
+      "mayEdit": false
+    }
+  ]
+}
