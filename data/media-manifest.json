@@ -58,6 +58,23 @@
       "status": "project-generated",
       "permissionNote": "Original project-created text-only sharing card; not external photography.",
       "intendedComponent": "metadata"
+    },
+    {
+      "id": "orange-burger-art-v1",
+      "localFilename": "public/images/generated/orange-burger-art-v1.png",
+      "url": "/images/generated/orange-burger-art-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "12c7f69ab734c50e3f9a06056bf895de3075790895c581b223fc343bfeaa074e",
+      "status": "project-generated",
+      "approvalStatus": "approved",
+      "approvedOn": "2026-09-18",
+      "permissionNote": "User explicitly requested Imagegen artwork for this branded website on 2026-09-18. Concept illustration, not authentic restaurant photography.",
+      "platform": "OpenAI built-in image_gen",
+      "intendedComponent": "hero",
+      "mayCrop": false,
+      "mayEdit": false,
+      "disclosure": "Visible bilingual AI illustration caption; original generated PNG and provenance retained."
     }
   ]
 }

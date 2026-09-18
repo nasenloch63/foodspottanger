@@ -152,6 +152,35 @@ test("empty external media is valid and builds without importing anything", asyn
   assert.equal(f.run().status, 0);
 });
 
+test("generated artwork requires authorization and exact published bytes", async () => {
+  const f = await fixture();
+  await f.save([]);
+  await writeFile(path.join(f.root, "public/art.png"), f.image);
+  const artwork = {
+    id: "test-art",
+    localFilename: "public/art.png",
+    width: 12,
+    height: 8,
+    approvalStatus: "approved",
+    permissionNote: "Explicitly authorized synthetic fixture",
+    sha256: f.entry.sha256,
+  };
+  const saveManifest = () =>
+    writeFile(
+      path.join(f.root, "data/media-manifest.json"),
+      JSON.stringify({ version: 1, assets: [], generated: [artwork] }),
+    );
+  await saveManifest();
+  assert.equal(f.run("--check").status, 0);
+  artwork.approvalStatus = "pending";
+  await saveManifest();
+  assert.notEqual(f.run("--check").status, 0);
+  artwork.approvalStatus = "approved";
+  artwork.sha256 = "0".repeat(64);
+  await saveManifest();
+  assert.notEqual(f.run("--check").status, 0);
+});
+
 test("embedded metadata requires a matching documented review and remains unchanged", async () => {
   const f = await fixture();
   const image = await sharp(f.image)

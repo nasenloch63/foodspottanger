@@ -19,3 +19,16 @@ This report supersedes the initial demo-gallery report. Verified on Node.js 24 w
 - Search of app/components/data/locales: no stock-photo URLs or retired demo-image paths. Media check validates published paths, hashes, approvals and generated assets.
 
 Real photo originals, confirmed menu, high-resolution logo, native Moroccan copy review, operator/legal details and final domain remain launch inputs. Google listing/photo inspection was blocked by a challenge; gated Instagram posts were not accessed. Public profiles and previews supported the documented brand analysis. See BRAND_MEDIA_AUDIT.md and MEDIA_APPROVAL.md.
+
+## 18 September 2026 — 1920px Imagegen redesign
+
+Supersedes the earlier logo-only hero description. The original business logo remains; the hero now displays a separately authorized, visibly labeled AI concept illustration.
+
+- Checked 360, 390, 768, 1024, 1440 and 1920px in French and Darija: no horizontal overflow or broken images; RTL correct.
+- 1920px viewport: 1760px centered content confirmed; canvas capped at 1920px. Desktop/mobile hero and menu screenshots reviewed.
+- All four rendered images loaded: three official-logo placements and one orange-burger-art-v1, all registered in the manifest.
+- Mobile navigation closes on selection. Menu filter returns one category and resets to five.
+- Browser errors/warnings: none during final browser checks.
+- Seven media regression tests passed, including generated-art authorization and tamper rejection. TypeScript, ESLint and production build checked for this update.
+- Imagegen built-in tool produced the original 1254 × 1254 PNG (~2.2MB). It is preserved unchanged with embedded provenance and bilingual disclosure. Exact prompt in IMAGEGEN_ART_DIRECTION.md.
+- No accessibility certification is claimed by the term AA+; this was implemented as a visual quality direction. Official menu, legal details and authentic photography remain owner inputs.

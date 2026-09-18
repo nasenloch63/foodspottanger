@@ -68,3 +68,7 @@ Import this repository in Vercel, choose **Next.js**, keep the project root, and
 7. Remove demo labels only when the corresponding content is finalized. Recheck mobile layouts after replacing content.
 
 The buttons open WhatsApp, the phone dialer, Instagram or Google Maps. They do not imply an integrated ordering or payment service. No dates, reviews, GPS coordinates or definitive prices have been invented. Public research/approval limitations and outstanding source URLs are recorded in `MEDIA_APPROVAL.md`.
+
+## 1920px design and generated hero
+
+The 18 September update adds a 1920px maximum canvas, 1760px centered content, responsive editorial typography, numbered menu cards and a user-requested Imagegen concept hero. It is labeled as AI artwork in both languages; it is not a restaurant/menu photo. The original PNG and provenance are preserved in public/images/generated/orange-burger-art-v1.png and checked by the build. IMAGEGEN_ART_DIRECTION.md contains the prompt. Authentic approved hero photography takes precedence when supplied.

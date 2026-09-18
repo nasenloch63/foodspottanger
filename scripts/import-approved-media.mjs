@@ -211,19 +211,45 @@ async function main() {
       if (item.isDirectory()) await checkPublic(location);
       else if (/\.(svg|png|jpe?g|webp|avif|gif)$/i.test(item.name))
         requireValue(
-          manifest.assets.some(
-            (a) => path.join(root, a.localFilename) === location,
-          ),
+          [
+            ...manifest.assets,
+            ...(manifest.generated ?? []).filter(
+              (a) => a.approvalStatus === "approved" && a.sha256,
+            ),
+          ].some((a) => path.join(root, a.localFilename) === location),
           `Unregistered public image: ${path.relative(root, location)}`,
         );
     }
   }
   await checkPublic(publicRoot);
-  for (const entry of manifest.generated ?? [])
+  for (const entry of manifest.generated ?? []) {
     requireValue(
       await exists(path.join(root, entry.localFilename)),
       `Missing generated interface asset: ${entry.id}`,
     );
+    if (entry.localFilename.startsWith("public/")) {
+      requireValue(
+        entry.approvalStatus === "approved" && present(entry.permissionNote),
+        `${entry.id}: generated image requires project authorization.`,
+      );
+      const target = await realpath(path.join(root, entry.localFilename));
+      requireValue(
+        inside(publicRoot, target),
+        `${entry.id}: invalid generated path.`,
+      );
+      const bytes = await readFile(target);
+      requireValue(
+        hash(bytes) === entry.sha256,
+        `${entry.id}: generated file hash mismatch.`,
+      );
+      const dimensions = await sharp(bytes).metadata();
+      requireValue(
+        dimensions.width === entry.width && dimensions.height === entry.height,
+        `${entry.id}: generated dimensions mismatch.`,
+      );
+      await sharp(bytes, { limitInputPixels: 40_000_000 }).raw().toBuffer();
+    }
+  }
   const pending = [];
   const requestIds = new Set();
   const requestNames = new Set();

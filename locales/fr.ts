@@ -12,6 +12,9 @@ export const fr = {
   instagram: "Voir notre Instagram",
   language: "Choisir la langue",
   mediaSource: "Voir la source",
+  artworkAlt:
+    "Illustration IA : sculpture de burger orange et noire, création artistique et non un plat de la carte.",
+  artworkCaption: "Création visuelle IA · illustration non contractuelle",
   realSpot: "Retrouvez le spot.\nEn vrai.",
   mediaWaiting:
     "Les photos du restaurant seront présentées ici dès leur sélection. En attendant, retrouvez-nous sur notre compte Instagram.",

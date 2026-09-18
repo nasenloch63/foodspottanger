@@ -45,3 +45,7 @@ Owner authorized business-owned logo/photos on 17 September 2026. **One official
 **Zero food, premises, packaging or people photographs imported.** Public previews informed analysis but remain linked only. Need high-resolution logo and original business-owned food/storefront/interior/packaging files with source/creator information. Existing business-owned permission persists; third-party content needs separate clearance. The 150px logo is not a print-quality master.
 
 Menu/prices, legal details, final domain, native-speaker Darija review and authentic photography remain launch inputs. Full photographic redesign and real-gallery visual QA await those originals. See MEDIA_APPROVAL.md and VERIFICATION.md.
+
+## 18 September 2026 — requested Imagegen update
+
+The user explicitly requested Imagegen art for the 1920px redesign. One new concept image, public/images/generated/orange-burger-art-v1.png, is authorized as project-generated artwork and registered with a hash. It is visibly labeled in both languages and is not claimed as real restaurant photography. The official logo remains unchanged. See IMAGEGEN_ART_DIRECTION.md for the exact prompt and generation method. This supersedes the earlier logo-only hero description; authentic food/gallery originals are still absent.

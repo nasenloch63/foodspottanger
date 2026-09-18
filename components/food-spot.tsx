@@ -24,6 +24,7 @@ import { categories, menu, type Category } from "@/data/menu";
 import { mediaFor, mediaById } from "@/data/media";
 import { officialPosts } from "@/data/social";
 import { ApprovedImage, MediaCredit } from "./approved-image";
+import { BrandArtwork } from "./brand-artwork";
 import { Brand, LanguageSwitcher, OrderLink } from "./ui";
 
 const ids = [
@@ -44,7 +45,6 @@ export default function FoodSpot() {
   const t: Dictionary = language === "fr" ? fr : ary;
   const gallery = mediaFor("gallery");
   const hero = mediaFor("hero")[0];
-  const logo = mediaFor("logo")[0];
   const social = mediaFor("social")[0];
   const changeLanguage = (next: "fr" | "ary") => {
     setLanguage(next);
@@ -184,41 +184,14 @@ export default function FoodSpot() {
               {t.scroll}
             </a>
           </div>
-          <div
-            className={`hero-media ${hero ? "has-media" : "awaiting-media"}`}
-          >
-            {hero ? (
-              <>
-                <ApprovedImage asset={hero} language={language} priority />
-                <MediaCredit asset={hero} label={t.mediaSource} />
-              </>
-            ) : (
-              <>
-                {logo && (
-                  <div className="hero-logo">
-                    <ApprovedImage asset={logo} language={language} priority />
-                  </div>
-                )}
-                <span className="eyebrow">THE FOOD SPOT / TANGER</span>
-                <h2>{t.realSpot}</h2>
-                <p>{t.mediaWaiting}</p>
-                <a
-                  className="text-link"
-                  href={site.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Instagram size={19} />
-                  {t.instagram}
-                  <ArrowUpRight size={17} />
-                </a>
-                <div className="hero-address">
-                  <MapPin size={18} />
-                  <bdi>{site.address}</bdi>
-                </div>
-              </>
-            )}
-          </div>
+          {hero ? (
+            <div className="hero-media has-media">
+              <ApprovedImage asset={hero} language={language} priority />
+              <MediaCredit asset={hero} label={t.mediaSource} />
+            </div>
+          ) : (
+            <BrandArtwork language={language} />
+          )}
         </section>
         <div className="info-bar">
           <div className="container info-inner">
@@ -317,6 +290,9 @@ export default function FoodSpot() {
                       </div>
                     )}
                     <div className="product-body">
+                      <span className="menu-number" aria-hidden="true">
+                        {String(menu.indexOf(item) + 1).padStart(2, "0")}
+                      </span>
                       <h3>
                         {item.name?.[language] ?? t.categories[item.category]}
                       </h3>
